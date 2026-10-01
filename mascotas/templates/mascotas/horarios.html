@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block titulo %}Horarios{% endblock %}
+
+{% block contenido %}
+<h1>Horarios de atencion</h1>
+<table>
+  <tr><th>Dia</th><th>Horario</th></tr>
+  {% for h in horarios %}
+    <tr><td>{{ h.dia }}</td><td>{{ h.horario }}</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

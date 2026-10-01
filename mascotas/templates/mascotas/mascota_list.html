@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block titulo %}{% if categoria %}{{ categoria.nombre }}{% else %}Inicio{% endif %}{% endblock %}
+
+{% block contenido %}
+<h1>{% if categoria %}Categoria: {{ categoria.nombre }}{% else %}Mascotas en la tienda{% endif %}</h1>
+
+{% if categoria %}<p><a href="{% url 'mascota_list' %}">&larr; Ver todas</a></p>{% endif %}
+
+<div class="grilla">
+  {% for mascota in mascotas %}
+    <a class="tarjeta" href="{% url 'mascota_detail' mascota.pk %}">
+      <img src="{{ mascota.imagen }}" alt="{{ mascota.nombre }}">
+      <div class="cuerpo">
+        <span class="etiqueta {% if not mascota.disponible %}no{% endif %}">
+          {% if mascota.disponible %}Disponible{% else %}No disponible{% endif %}
+        </span>
+        <h3>{{ mascota.nombre }}</h3>
+        <p>{{ mascota.categoria.nombre }}{% if mascota.raza %} &middot; {{ mascota.raza }}{% endif %}</p>
+      </div>
+    </a>
+  {% empty %}
+    <p>No hay mascotas para mostrar.</p>
+  {% endfor %}
+</div>
+{% endblock %}

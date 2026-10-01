@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block titulo %}{{ object.nombre }}{% endblock %}
+
+{% block contenido %}
+<p><a href="{% url 'mascota_list' %}">&larr; Volver</a></p>
+<h1>{{ object.nombre }}</h1>
+<img src="{{ object.imagen }}" alt="{{ object.nombre }}" style="max-width:100%;border-radius:8px">
+
+<p>
+  <span class="etiqueta {% if not object.disponible %}no{% endif %}">
+    {% if object.disponible %}Disponible{% else %}No disponible{% endif %}
+  </span>
+</p>
+<p><strong>Categoria:</strong> <a href="{% url 'mascota_por_categoria' object.categoria.pk %}">{{ object.categoria.nombre }}</a></p>
+{% if object.raza %}<p><strong>Raza:</strong> {{ object.raza }}</p>{% endif %}
+<p><strong>Edad:</strong> {{ object.edad }} años</p>
+{% if object.descripcion %}<p>{{ object.descripcion }}</p>{% endif %}
+
+{% if user.is_authenticated %}
+  <p>
+    <a class="btn" href="{% url 'mascota_update' object.pk %}">Editar</a>
+    <a class="btn borrar" href="{% url 'mascota_delete' object.pk %}">Borrar</a>
+  </p>
+{% endif %}
+{% endblock %}
