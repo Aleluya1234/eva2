@@ -35,6 +35,7 @@
     <a href="{% url 'mascota_list' %}">Inicio</a>
     <a href="{% url 'horarios' %}">Horarios</a>
     {% if user.is_authenticated %}<a href="{% url 'mascota_create' %}">Nueva mascota</a>{% endif %}
+    {% if user.is_authenticated %}<a href="{% url 'categoria_create' %}">Nueva categoria</a>{% endif %}
   </nav>
   {% if user.is_authenticated %}
     <span>Hola, {{ user.username }}</span>

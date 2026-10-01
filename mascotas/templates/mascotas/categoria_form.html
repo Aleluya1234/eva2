@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block titulo %}Nueva categoria{% endblock %}
+
+{% block contenido %}
+<div class="caja">
+  <h1>Nueva categoria</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>
+      <button class="btn" type="submit">Guardar</button>
+      <a href="{% url 'mascota_create' %}">Cancelar</a>
+    </p>
+  </form>
+</div>
+{% endblock %}

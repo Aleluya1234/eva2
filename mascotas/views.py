@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-from .forms import MascotaForm
+from .forms import MascotaForm, CategoriaForm
 from .models import Categoria, Mascota
 
 
@@ -57,3 +57,8 @@ def horarios(request):
     with open(ruta, encoding='utf-8') as f:
         datos = json.load(f)
     return render(request, 'mascotas/horarios.html', {'horarios': datos})
+
+class CategoriaCreate(LoginRequiredMixin, CreateView):
+    model = Categoria
+    form_class = CategoriaForm
+    success_url = reverse_lazy('mascota_create')

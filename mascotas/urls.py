@@ -10,4 +10,5 @@ urlpatterns = [
     path('<int:pk>/', views.MascotaDetail.as_view(), name='mascota_detail'),
     path('<int:pk>/editar/', views.MascotaUpdate.as_view(), name='mascota_update'),
     path('<int:pk>/borrar/', views.MascotaDelete.as_view(), name='mascota_delete'),
+    path('categorias/nueva/', views.CategoriaCreate.as_view(), name='categoria_create'),
 ]

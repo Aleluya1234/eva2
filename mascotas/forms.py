@@ -4,10 +4,15 @@ para editar (MascotaCreate y MascotaUpdate, en views.py).
 """
 from django import forms
 
-from .models import Mascota
+from .models import Mascota, Categoria
 
 
 class MascotaForm(forms.ModelForm):
     class Meta:
         model = Mascota
         fields = ['nombre', 'categoria', 'raza', 'edad', 'descripcion', 'imagen', 'disponible']
+
+class CategoriaForm(forms.ModelForm):
+    class Meta:
+        model = Categoria
+        fields = ['nombre']
